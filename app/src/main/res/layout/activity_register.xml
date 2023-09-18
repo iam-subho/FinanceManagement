@@ -74,6 +74,8 @@
                     android:focusableInTouchMode="true"
                     android:hint="@string/date_of_birth"
                     />
+                <!--android:drawableRight="@drawable/calender_icon"
+android:drawablePadding="10dp"-->
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
