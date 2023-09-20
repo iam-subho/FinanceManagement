@@ -3,6 +3,7 @@ package kundu.subhojit.moneytracker.utility;
 public class Constants {
 
     public static final String databasename="myfinanceapp.db";
+    public static final String initialEntryDone="initialEntryDone";
     public static final String loggedin="loggedin";
     public static final String registered="registered";
     public static final String loginpin="loginpin";

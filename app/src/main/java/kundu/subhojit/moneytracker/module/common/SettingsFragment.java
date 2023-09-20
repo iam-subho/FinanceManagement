@@ -14,15 +14,20 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
 import kundu.subhojit.moneytracker.R;
+import kundu.subhojit.moneytracker.database.DatabaseHelper;
+import kundu.subhojit.moneytracker.database.entity.AccountTypeEntity;
 
 public class SettingsFragment extends Fragment {
 
     public static final String TAG="SettingsFragment";
-    public static final int PERMISSION_RESULT_CODE_FILECHOOSE=1011;
+    public static final int PERMISSION_RESULT_CODE_FILECHOOSE=101;
 
     EditText editTextPath;
     Button restore,choose;
+
 
     public SettingsFragment(){
 
@@ -40,7 +45,7 @@ public class SettingsFragment extends Fragment {
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Restore Button Clicked",Toast.LENGTH_SHORT);
+                Toast.makeText(requireContext(),"Restore Button Clicked",Toast.LENGTH_SHORT);
                 Log.e(TAG+29,"Restore");
                   doBrowseFile();
             }
@@ -49,22 +54,16 @@ public class SettingsFragment extends Fragment {
         restore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                restorethedb();
+                //restorethedb();
             }
         });
 
-        settingsView.findViewById(R.id.restore).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),"Restore Button Clicked",Toast.LENGTH_SHORT);
-                Log.e(TAG+29,"Restore");
-            }
-        });
+
 
         settingsView.findViewById(R.id.backupBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Backup Button Clicked",Toast.LENGTH_SHORT);
+                Toast.makeText(requireContext(),"Backup Button Clicked",Toast.LENGTH_SHORT);
                 Log.e(TAG+38,"Backup");
             }
         });
@@ -78,7 +77,7 @@ public class SettingsFragment extends Fragment {
 
     private void doBrowseFile() {
         Log.e(TAG+92,"function entry");
-        Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(intent,PERMISSION_RESULT_CODE_FILECHOOSE);
@@ -92,7 +91,8 @@ public class SettingsFragment extends Fragment {
                 if(resultCode==Activity.RESULT_OK){
                     if(data!=null){
                         Uri fileuri=data.getData();
-                        editTextPath.setText(fileuri.toString());
+                        String path = fileuri.getPath();
+                        editTextPath.setText(path);
                         choose.setVisibility(View.INVISIBLE);
                         restore.setVisibility(View.VISIBLE);
                     }
@@ -101,7 +101,17 @@ public class SettingsFragment extends Fragment {
     }
 
     public void restorethedb(){
+        Log.e(TAG+99,"Restore");
         String path=editTextPath.getText().toString();
+        DatabaseHelper.roomImportDatabaseFromFile(path,requireContext());
+        //roomImport(path,requireContext());
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(requireContext());
+
+        ArrayList<AccountTypeEntity> accountTypeEntityList=(ArrayList)databaseHelper.accountTypeDao().getAllAccountTypes();
+
+        for(int i=0;i<accountTypeEntityList.size();i++){
+            Log.e(TAG, accountTypeEntityList.get(i).getName());
+        }
 
     }
 

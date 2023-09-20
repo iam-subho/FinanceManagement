@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import kundu.subhojit.moneytracker.database.DatabaseHelper;
+import kundu.subhojit.moneytracker.database.dao.AccountTypeDao;
+import kundu.subhojit.moneytracker.database.entity.AccountTypeEntity;
 import kundu.subhojit.moneytracker.module.home.DashboardActivity;
 import kundu.subhojit.moneytracker.utility.Constants;
 import kundu.subhojit.moneytracker.utility.Utility;
@@ -31,10 +34,12 @@ public class SplashActivity extends AppCompatActivity {
                                 public void run() {
 
                                     boolean registered= utility.getPrefBoolean(Constants.registered);
+                                    boolean initialEntry= utility.getPrefBoolean(Constants.initialEntryDone);
                                     if(registered){
                                         Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
                                         intent.putExtra("msg","");
                                         startActivity(intent);
+                                        if(!initialEntry){insertSampleData();}
                                         finish();
                                     }else{
                                         Intent intent = new Intent(SplashActivity.this, RegisterActivity.class);
@@ -48,6 +53,18 @@ public class SplashActivity extends AppCompatActivity {
                             }
 
         ,1000);
+    }
+
+    private void insertSampleData() {
+        DatabaseHelper databaseHelper=DatabaseHelper.getInstance(getApplicationContext());
+        databaseHelper.databaseWriteExecutor.execute(() -> {
+            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Income"));
+            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Expense"));
+            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Loan"));
+            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Due"));
+            utility.setPrefBoolean(Constants.initialEntryDone,true);
+        });
+
     }
 
     @Override

@@ -23,6 +23,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import kundu.subhojit.moneytracker.R;
+import kundu.subhojit.moneytracker.database.DatabaseHelper;
+import kundu.subhojit.moneytracker.database.entity.AccountTypeEntity;
 import kundu.subhojit.moneytracker.module.BaseActivity;
 import kundu.subhojit.moneytracker.module.common.DueLoanFragment;
 import kundu.subhojit.moneytracker.module.common.IncomeExpenseFragment;
@@ -46,7 +48,7 @@ public class DashboardActivity extends AppCompatActivity {
         fab=findViewById(R.id.fabtn);
         utility=new Utility(DashboardActivity.this);
         setuppermission();
-        
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
