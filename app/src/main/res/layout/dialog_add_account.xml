@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textSize="36sp"
+        android:text="Add Account"/>
+    <LinearLayout
+        android:id="@+id/accountTypeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Select"
+            android:padding="5dp"
+            android:textSize="20sp"/>
+        <Spinner
+            android:id="@+id/accountType"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:entries="@array/accountTyep"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/accountTypeTextLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/accountTypeTextTV"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=""
+            android:padding="5dp"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Name"
+            android:padding="5dp"
+            android:textSize="20sp"/>
+        <EditText
+            android:id="@+id/accountNameET"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Saving Account 123"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Balance"
+            android:padding="5dp"
+            android:textSize="20sp"/>
+        <EditText
+            android:id="@+id/balanceET"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Initial Balance"
+            android:inputType="numberSigned"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/curBalanceLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Cur Balance"
+            android:padding="5dp"
+            android:textSize="20sp"/>
+        <EditText
+            android:id="@+id/balanceTotalET"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Initial Balance"
+            android:inputType="numberSigned"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10sp">
+        <Button
+            android:id="@+id/addAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Account"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

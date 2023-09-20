@@ -3,9 +3,10 @@ package kundu.subhojit.moneytracker.database.entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "category")
+@Entity(tableName = "category",indices = {@Index(value = "name", unique = true)})
 public class CategoryEntity {
 
     @PrimaryKey(autoGenerate = true)

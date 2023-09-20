@@ -13,6 +13,7 @@ import android.os.Handler;
 import kundu.subhojit.moneytracker.database.DatabaseHelper;
 import kundu.subhojit.moneytracker.database.dao.AccountTypeDao;
 import kundu.subhojit.moneytracker.database.entity.AccountTypeEntity;
+import kundu.subhojit.moneytracker.database.entity.CategoryEntity;
 import kundu.subhojit.moneytracker.module.home.DashboardActivity;
 import kundu.subhojit.moneytracker.utility.Constants;
 import kundu.subhojit.moneytracker.utility.Utility;
@@ -52,16 +53,15 @@ public class SplashActivity extends AppCompatActivity {
                                 }
                             }
 
-        ,1000);
+        ,100);
     }
 
     private void insertSampleData() {
         DatabaseHelper databaseHelper=DatabaseHelper.getInstance(getApplicationContext());
         databaseHelper.databaseWriteExecutor.execute(() -> {
-            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Income"));
-            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Expense"));
-            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Loan"));
-            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Due"));
+            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Savings"));  //1
+            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Credit"));   //2
+            databaseHelper.accountTypeDao().insertAccountType(new AccountTypeEntity("Lending"));  //3
             utility.setPrefBoolean(Constants.initialEntryDone,true);
         });
 

@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.room.Dao;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -34,7 +37,7 @@ import kundu.subhojit.moneytracker.database.entity.CustomerEntity;
 import kundu.subhojit.moneytracker.database.entity.TransactionEntity;
 import kundu.subhojit.moneytracker.utility.Constants;
 
-@Database(entities = {AccountTypeEntity.class, AccountEntity.class, CategoryEntity.class, CustomerEntity.class, TransactionEntity.class}, version = 1)
+@Database(entities = {AccountTypeEntity.class, AccountEntity.class, CategoryEntity.class, CustomerEntity.class, TransactionEntity.class}, version = 3)
 public abstract class DatabaseHelper extends RoomDatabase {
 
     public abstract AccountTypeDao accountTypeDao();
@@ -47,16 +50,41 @@ public abstract class DatabaseHelper extends RoomDatabase {
     public static String TAG="DatabaseHelper";
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public static final ExecutorService dataBaseReadExecutor=Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    public static DatabaseHelper getInstance(Context context) {
+
+    public static synchronized DatabaseHelper getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),DatabaseHelper.class, Constants.databasename)
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build();
         }
 
         return instance;
     }
+
+    /*
+    private static RoomDatabase.Callback roomCallback=new RoomDatabase.Callback(){
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            // this method is called when database is created
+            // and below line is to populate our data.
+            new PopulateDbAsyncTask(instance).execute();
+        }
+    };*/
+
+    /* we are creating an async task class to perform task in background.
+    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
+        PopulateDbAsyncTask(DatabaseHelper instance) {
+            Dao dao = instance.Dao();
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            return null;
+        }
+    }*/
 
 
     public static void roomImportDatabaseFromFile(String uri, Context context){

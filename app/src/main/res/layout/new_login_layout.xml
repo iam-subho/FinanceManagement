@@ -64,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:ems="15"
+        android:maxLength="6"
         android:hint="Enter your PIN"
         android:inputType="numberPassword"
         android:minHeight="48dp"

@@ -52,7 +52,7 @@ public class DashboardActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FabMenuFragment fabMenuFragment = new FabMenuFragment();
+                FabMenuFragment fabMenuFragment = new FabMenuFragment(DashboardActivity.this);
                 fabMenuFragment.show(getSupportFragmentManager(), fabMenuFragment.getTag());
             }
         });

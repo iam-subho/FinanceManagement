@@ -13,12 +13,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
 import kundu.subhojit.moneytracker.R;
 import kundu.subhojit.moneytracker.database.DatabaseHelper;
 import kundu.subhojit.moneytracker.database.entity.AccountTypeEntity;
+import kundu.subhojit.moneytracker.module.accounts.FragmentAccountList;
 
 public class SettingsFragment extends Fragment {
 
@@ -56,7 +58,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 //restorethedb();
             }
-        });
+        });   //listofAccounts
 
 
 
@@ -65,6 +67,16 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(requireContext(),"Backup Button Clicked",Toast.LENGTH_SHORT);
                 Log.e(TAG+38,"Backup");
+            }
+        });
+
+        settingsView.findViewById(R.id.listofAccounts).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentAccountList fragmentAccountList=new FragmentAccountList(requireContext());
+                FragmentTransaction fragmentTransaction=requireActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container,fragmentAccountList);
+                fragmentTransaction.commit();
             }
         });
 
