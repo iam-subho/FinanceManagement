@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -25,12 +26,13 @@ public class RegisterActivity extends AppCompatActivity {
     String name,dob,pin,mob,confirmpin;
     Button btnRegister;
     Utility utility;
+    TextView loginBtn;
     public static final String TAG="RegisterActivity";  //for Log and debug
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.new_register_layout);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
@@ -44,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmpinEditText=findViewById(R.id.editTextPINConfirm);
         mobEditText   =findViewById(R.id.editTextMobileNo);
         btnRegister   =findViewById(R.id.registerbtn);
+        loginBtn      =findViewById(R.id.loginTV);
 
         utility.clearAllPreferences();
 
@@ -76,6 +79,16 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 completerregister();
+            }
+        });
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                intent.putExtra("msg","");
+                startActivity(intent);
+                finish();
             }
         });
 

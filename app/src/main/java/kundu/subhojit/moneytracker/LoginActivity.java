@@ -4,11 +4,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,20 +22,25 @@ import kundu.subhojit.moneytracker.utility.Utility;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button login,register;
+    Button login;
     EditText loginpin;
-    TextView usermsg;
+    TextView usermsg,register;
+    ImageView backbtn;
     Utility utility;
     public static final String TAG="LoginActivity";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.new_login_layout);
         login=findViewById(R.id.login);
         register=findViewById(R.id.register);
         loginpin=findViewById(R.id.pin);
-        usermsg=findViewById(R.id.textView);
+        usermsg=findViewById(R.id.textView3);
+        backbtn=findViewById(R.id.backbutton);
+
+
+        //object creation of Utility Class
         utility = new Utility(getApplicationContext());
 
         Intent intent=getIntent();
@@ -53,8 +60,15 @@ public class LoginActivity extends AppCompatActivity {
             utility.printAll();
             String username= utility.getPrefString(Constants.sname);
             //Log.e(TAG+53,String.valueOf(username));
-            usermsg.setText("HI, "+username+" Please login to use");  // i have done it
+            usermsg.setText("Hello "+username);  // i have done it
         }
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
         

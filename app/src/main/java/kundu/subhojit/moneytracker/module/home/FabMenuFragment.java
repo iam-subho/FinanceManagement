@@ -34,6 +34,20 @@ public class FabMenuFragment extends BottomSheetDialogFragment {
             }
         });
 
+        view.findViewById(R.id.text_add_account).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
+        view.findViewById(R.id.text_add_category).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
         return view;
     }
 }

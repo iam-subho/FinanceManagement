@@ -23,4 +23,23 @@
         android:clickable="true"
         android:focusable="true"
         android:background="?android:attr/selectableItemBackground"/>
+
+    <TextView
+        android:id="@+id/text_add_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Account"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground"/>
+    <TextView
+        android:id="@+id/text_add_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Category"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground"/>
 </LinearLayout>

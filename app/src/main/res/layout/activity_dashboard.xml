@@ -27,6 +27,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="?attr/actionBarSize"
+        android:padding="5dp"
+        android:layout_marginRight="10dp"
         app:srcCompat="@drawable/plus_icon"
         android:tooltipText="Add"
         android:id="@+id/fabtn"

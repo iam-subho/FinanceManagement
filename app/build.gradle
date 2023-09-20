@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
+def room_version = "2.5.2"
+
+
 android {
     namespace 'kundu.subhojit.moneytracker'
     compileSdk 33
@@ -44,5 +47,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     //lottie animation
     implementation 'com.airbnb.android:lottie:6.1.0' //
+    //room database
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
 
 }

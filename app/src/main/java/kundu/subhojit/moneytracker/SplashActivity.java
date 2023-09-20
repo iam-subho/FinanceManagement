@@ -35,9 +35,11 @@ public class SplashActivity extends AppCompatActivity {
                                         Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
                                         intent.putExtra("msg","");
                                         startActivity(intent);
+                                        finish();
                                     }else{
                                         Intent intent = new Intent(SplashActivity.this, RegisterActivity.class);
                                         startActivity(intent);
+                                        finish();
                                     }
 
 
