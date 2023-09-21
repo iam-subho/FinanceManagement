@@ -6,20 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".module.home.DashboardActivity">
 
-<!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:id="@+id/toolbar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="?attr/actionBarSize"-->
-<!--        android:background="?attr/colorPrimary"-->
-<!--        android:elevation="4dp"-->
-<!--        app:popupTheme="@style/Theme.Design.Light" />-->
 
-    <!-- Your content goes here -->
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="?attr/actionBarSize"/>
+
+    <com.leinardi.android.speeddial.SpeedDialView
+        android:id="@+id/floatingActionBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.leinardi.android.speeddial.SpeedDialView
+            android:id="@+id/bankadd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.leinardi.android.speeddial.SpeedDialView
+            android:id="@+id/transactionadd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </com.leinardi.android.speeddial.SpeedDialView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"

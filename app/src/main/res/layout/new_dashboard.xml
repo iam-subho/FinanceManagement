@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".module.home.DashboardActivity"
+    tools:ignore="HardcodedText">
+
+    <!-- Your existing content here -->
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/buttom_navigation" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/add_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:text="Add"
+        app:icon="@drawable/plus_icon"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_anchor="@id/container"
+        app:layout_anchorGravity="bottom|end"
+        app:shapeAppearanceOverlay="@style/RoundedCorner"/>
+
+    <!-- Add other FABs and text views -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_incomeexpense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/add_fab"
+        app:layout_constraintEnd_toEndOf="@+id/add_fab"
+        app:srcCompat="@drawable/payment_icon" />
+
+    <TextView
+        android:id="@+id/add_incomeexpense_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Add Income/Expense"
+        android:textSize="20sp"
+        android:padding="2dp"
+        android:background="@drawable/rounded_corner_holo_blue_light_floatingbtn"
+        app:layout_constraintBottom_toBottomOf="@+id/add_incomeexpense"
+        app:layout_constraintEnd_toStartOf="@+id/add_incomeexpense"
+        app:layout_constraintTop_toTopOf="@+id/add_incomeexpense" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_accounts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/add_incomeexpense"
+        app:layout_constraintEnd_toEndOf="@+id/add_incomeexpense"
+        app:layout_constraintStart_toStartOf="@+id/add_incomeexpense"
+        app:srcCompat="@drawable/bank_icon" />
+
+    <TextView
+        android:id="@+id/add_accounts_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Add Accounts"
+        android:textSize="20sp"
+        android:padding="2dp"
+        android:background="@drawable/rounded_corner_holo_blue_light_floatingbtn"
+
+        app:layout_constraintBottom_toBottomOf="@+id/add_accounts"
+        app:layout_constraintEnd_toStartOf="@+id/add_accounts"
+        app:layout_constraintTop_toTopOf="@+id/add_accounts" />
+
+    <!-- Add the BottomNavigationView -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
